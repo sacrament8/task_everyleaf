@@ -1,0 +1,13 @@
+<h2>Index Page</h2>
+<table>
+  <tr>
+  <th>タイトル</th>
+  <th>内容</th>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.content %></td>
+    </tr>
+  <% end %>
+</table>
