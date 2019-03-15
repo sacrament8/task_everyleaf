@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: []
+  before_action :set_task, only: [:show]
   def index
     @tasks = Task.all
   end
@@ -15,6 +15,9 @@ class TasksController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   private
