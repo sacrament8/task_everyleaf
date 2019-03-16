@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show]
+  before_action :set_task, only: %w(show edit update)
   def index
     @tasks = Task.all
   end
@@ -20,6 +20,17 @@ class TasksController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: 'タスクの更新に成功しました'
+    else
+      flash.now[:danger] = '入力に不備があります'
+      render :edit
+    end
+  end
   private
 
 
