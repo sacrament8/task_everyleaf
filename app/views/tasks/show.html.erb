@@ -1,0 +1,4 @@
+<h2>Show Page</h2>
+<div>タスクタイトル: <%= @task.title %></div>
+<div>作業内容: <%= @task.content %></div>
+<div><%= link_to '編集', edit_task_path(@task) %> | <%= link_to '戻る', tasks_path %></div>
