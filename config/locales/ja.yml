@@ -1,0 +1,16 @@
+ja:
+  page:
+    index: 一覧ページ
+    new: タスク作成ページ
+    show: タスク詳細ページ
+    edit: タスク編集ページ
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        title: タイトル
+        content: 内容
+  attributes:
+    created_at: 作成日時
+    updated_at: 更新日時
