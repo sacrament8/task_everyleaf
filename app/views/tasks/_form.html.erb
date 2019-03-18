@@ -9,11 +9,11 @@
   <% end %>
   <div>
     <%= f.label :タイトル %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, id: 'title' %>
   </div>
   <div>
     <%= f.label :内容 %>
-    <%= f.text_field :content %>
+    <%= f.text_field :content, id: 'content' %>
   </div>
   <div>
     <%= f.submit '作成' %>
