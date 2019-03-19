@@ -1,10 +1,8 @@
-#READ ME
-
-##Ruby&Framework version
+# READ ME  
+## Ruby&Framework version  
 - ruby 2.6.1
-- 'rails', '~> 5.2.2', '>= 5.2.2.1'
-
-##デプロイの手順
+- 'rails', '~> 5.2.2', '>= 5.2.2.1'  
+## デプロイの手順  
 - heroku login
 - すでにアプリをデプロイしているならheroku apps:destroy --app アプリ名で消す
 - heroku create
@@ -16,14 +14,13 @@
 - デプロイされているか確認
   - heroku open
 - 更新差分を本番環境に適応させる
-  - commit後にgit push heroku master
-
-##テーブルスキーマ
+  - commit後にgit push heroku master  
+## テーブルスキーマ  
 - users table
   - ID
   - name:string
   - email:string
-  - password_digest:string
+  - password_digest:string  
 
 - tasks table
   - ID
@@ -32,13 +29,13 @@
   - status:integer
   - title:string
   - priority:integer
-  - content:text
+  - content:text  
 
 - labels table
   - ID
-  - category:integer
+  - category:integer  
 
 - pastes table
   - ID
   - task_id:bigint(FK)
-  - label_id:bigint(FK)
+  - label_id:bigint(FK)  
