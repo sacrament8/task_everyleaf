@@ -9,8 +9,9 @@ ja:
       task: タスク
     attributes:
       task:
-        title: タイトル
-        content: 内容
+        title: タイトル名
+        content: タスク詳細
+        deadline: 終了期限
   attributes:
     created_at: 作成日時
     updated_at: 更新日時

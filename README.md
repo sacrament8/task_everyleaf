@@ -3,7 +3,7 @@
 ## ruby&framework version
 - ruby 2.6.1
 - 'rails', '~> 5.2.2', '>= 5.2.2.1'
-##デプロイの手順
+## デプロイの手順
 - heroku login
 - すでにアプリをデプロイしているならheroku apps:destroy --app アプリ名で消す
 - heroku create
