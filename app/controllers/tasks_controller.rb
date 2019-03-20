@@ -1,10 +1,22 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %w(show edit update destroy)
   def index
-    if params[:sort_flag]
-      @tasks = Task.all.order(deadline: "DESC")
+    if params[:search_flag]
+      if params[:search_title] && params[:search_status]
+        @tasks = Task.where('status LIKE ?', "%#{params[:search_status]}%").where('title LIKE ?', "%#{params[:search_title]}%")
+      elsif params[:search_title] == "" && params[:search_status]
+        @tasks = Task.where('status LIKE ?', "%#{params[:search_status]}%")
+      elsif params[:search_title] && params[:search_status] == ""
+        @tasks = Task.where('title LIKE ?', "%#{params[:search_title]}%")
+      elsif params[:search_title] == "" && params[:search_status] == ""
+        @tasks = Task.all.order(created_at: "DESC")
+      end
     else
-      @tasks = Task.all.order(created_at: "DESC")
+      if params[:sort_flag]
+        @tasks = Task.all.order(deadline: "DESC")
+      else
+        @tasks = Task.all.order(created_at: "DESC")
+      end
     end
   end
 
@@ -45,7 +57,7 @@ class TasksController < ApplicationController
 
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline)
+    params.require(:task).permit(:title, :content, :deadline, :status)
   end
   
   def set_task
