@@ -10,8 +10,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
   scenario "タスク一覧のテスト" do
     visit tasks_path
-    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
-    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル２'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル1'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル2'
   end
 
   scenario "タスク作成のテスト" do
@@ -31,8 +31,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "タスク詳細のテスト" do
     visit tasks_path
     click_on '詳細', match: :first
-    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル２'
-    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル2'
+    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント2'
 
   end
 
@@ -48,14 +48,15 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "終了期限でソートするを押すと最初に登録した終了期限が長いタスクが上にくる" do
     #ファクトリーで3/30が最初、次に3/25日が終了期限のタスクが作成される
     #ここで3/28が期限のタスクを作ると、作成日降順なので普通は3/28のタスクが一番上になる
-    #終了期限でソートを押したら一番上に3/30のタスクが来ていればテスト成功
+    #終了期限でソートを押したら終了期限が迫っているものが一番上にソートされるので一番上が3/25のタスクが来ていればテスト成功
     Task.create(title: 'last_create_task', content: 'last_create_content', deadline: '2019-03-28')
     visit tasks_path
     click_on '終了期限でソート'
     click_on '詳細', match: :first
-    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
-    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
-    expect(page).to have_content '2019-03-30'
+    save_and_open_page
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル2'
+    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント2'
+    expect(page).to have_content '2019-03-25'
   end
   
 end

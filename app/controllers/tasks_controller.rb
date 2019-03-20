@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %w(show edit update destroy)
   def index
     if params[:sort_flag]
-      @tasks = Task.all.order(deadline: "DESC")
+      @tasks = Task.all.order(deadline: "ASC")
     else
       @tasks = Task.all.order(created_at: "DESC")
     end
