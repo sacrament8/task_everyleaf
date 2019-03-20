@@ -25,7 +25,7 @@
 - tasks table
   - ID
   - user_id:bigint(FK)
-  - deadline:datetime
+  - deadline:date
   - status:integer
   - title:string
   - priority:integer

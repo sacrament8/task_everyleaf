@@ -1,16 +1,17 @@
 <h2><%= t('page.index') %></h2>
-<p>これが表示されていればGitHub連携による自動デプロイ作業成功</p>
 <table>
   <tr>
   <th>タイトル</th>
   <th>内容</th>
   <th>作成日時</th>
+  <th>終了期限</th>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
       <td><%= task.content %></td>
       <td><%= task.created_at %></td>
+      <td><%= task.deadline %></td>
       <td><%= link_to '詳細', task_path(task) %></td>
       <td><%= link_to '編集', edit_task_path(task) %></td>
       <td><%= link_to '削除', task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか?' } %></td>
