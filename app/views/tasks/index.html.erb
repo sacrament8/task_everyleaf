@@ -1,4 +1,5 @@
 <h2><%= t('page.index') %></h2>
+<div><%= link_to '終了期限でソートする', tasks_path(sort_flag: true) %> | <%= link_to 'タスク追加が新しい順にソート', tasks_path(sort_flag: nil) %></div>
 <table>
   <tr>
   <th>タイトル</th>
