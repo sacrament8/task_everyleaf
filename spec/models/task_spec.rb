@@ -53,31 +53,31 @@ RSpec.describe Task, type: :model do
 
   describe "scope" do
     before do
-      let!(:task_a) { create(:task) }
-      let!(:task_b) { create(:second_task) }
-      let!(:task_c) { create(:third_task) }
-      let!(:task_d) { create(:fourth_task) }
+      create(:task)
+      create(:second_task)
+      create(:third_task)
+      create(:fourth_task)
     end
     it "status_title_like_whereのテスト" do
-      binding.pry
-      subject { Task.status_like_where("着手中", "タイトル4") }
-      it { is_expected.to eq task_d }
+      expect(Task.status_title_like_where("着手中", "タイトル4")).to eq Task.where("status LIKE ?", "%着手中%").where("title LIKE ?", "%タイトル4%")
     end
 
-    # it "status_like_whereのテスト" do
-    # end
+    it "status_like_whereのテスト" do
+      expect(Task.status_like_where("完了")).to eq Task.where("status LIKE ?", "%完了%")
 
-    # it "title_like_whereのテスト" do
-    # end
+    end
 
-    # it "deadline_ascのテスト" do
-    # end
+    it "title_like_whereのテスト" do
+      expect(Task.title_like_where("タイトル2")).to eq Task.where("title LIKE ?", "%タイトル2%")
+    end
 
-    # it "created_at_descのテスト" do
-    # end
+    it "deadline_ascのテスト" do
+      expect(Task.deadline_asc).to eq Task.all.order(deadline: "ASC")
+    end
+
+    it "created_at_descのテスト" do
+      expect(Task.created_at_desc).to eq Task.all.order(created_at: "DESC")
+    end
 
   end
 end
-
-
-  
