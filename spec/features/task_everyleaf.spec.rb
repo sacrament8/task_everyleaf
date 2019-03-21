@@ -35,7 +35,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on '詳細', match: :first
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル4'
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント4'
-
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
