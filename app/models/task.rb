@@ -9,6 +9,7 @@ class Task < ApplicationRecord
   scope :status_title_like_where, -> (params1, params2){where('status LIKE ?', "%#{params1}%").where('title LIKE ?', "%#{params2}%")}
   scope :status_like_where, -> (params){where('status LIKE ?', "%#{params}%")}
   scope :title_like_where, -> (params){where('title LIKE ?', "%#{params}%")}
+  scope :priority_asc, -> {all.order(priority: "ASC")}
   scope :deadline_asc, -> {all.order(deadline: "ASC")}
   scope :created_at_desc, -> {all.order(created_at: "DESC")}
 end
