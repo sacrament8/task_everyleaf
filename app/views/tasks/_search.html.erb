@@ -1,0 +1,9 @@
+<%= form_with local: true, url: tasks_path, method: 'get' do |f| %>
+<span><タスク検索></span>
+<%= f.label :search_status, 'ステータス' %>
+<%= f.select :search_status, ["", "未着手", "着手中", "完了"], id: 'task_status' %>
+<%= f.label :search_title, 'タイトル' %>
+<%= f.text_field :search_title, id: 'task_title' %>
+<%= f.hidden_field :search_flag, value: true %>
+<%= f.submit '検索' %>
+<% end %>

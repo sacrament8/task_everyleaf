@@ -1,10 +1,25 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %w(show edit update destroy)
   def index
-    if params[:sort_flag]
-      @tasks = Task.all.order(deadline: "ASC")
-    else
-      @tasks = Task.all.order(created_at: "DESC")
+    title = params[:search_title] if params[:search_title].present?
+    status = params[:search_status] if params[:search_status].present?
+
+    if params[:search_flag] == "true"     # 検索フォームからの処理か分岐
+      if params[:search_title].present? && params[:search_status].present?    # 入力欄どちらもあり
+        @tasks = Task.status_title_like_where(status, title)
+      elsif params[:search_title].empty? && params[:search_status].present?     # タイトルのみ空
+        @tasks = Task.status_like_where(status)
+      elsif params[:search_title].present? && params[:search_status].empty?      # ステータスのみ空
+        @tasks = Task.title_like_where(title)
+      elsif params[:search_title].empty? && params[:search_status].empty?  # ステータスもタイトルも空
+        @tasks = Task.created_at_desc
+      end
+    else     # 検索フォームから以外の処理
+      if params[:sort_flag]       #ソートリンク(終了期限でソート)からの処理
+        @tasks = Task.deadline_asc
+      else                        #ソートリンク(タスク追加が新しい順にソート)からの処理
+        @tasks = Task.created_at_desc
+      end
     end
   end
 
@@ -45,7 +60,7 @@ class TasksController < ApplicationController
 
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline)
+    params.require(:task).permit(:title, :content, :deadline, :status)
   end
   
   def set_task

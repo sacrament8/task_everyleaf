@@ -1,11 +1,13 @@
 <h2><%= t('page.index') %></h2>
-<div><%= link_to '終了期限でソートする', tasks_path(sort_flag: true) %> | <%= link_to 'タスク追加が新しい順にソート', tasks_path(sort_flag: nil) %></div>
+<div><%= render 'search' %></div><br>
+<div><%= link_to '終了期限でソートする', tasks_path(sort_flag: true) %> | <%= link_to 'タスク追加が新しい順にソート', tasks_path(sort_flag: nil) %></div><br>
 <table>
   <tr>
   <th>タイトル</th>
   <th>内容</th>
   <th>作成日時</th>
   <th>終了期限</th>
+  <th>ステータス</th>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
@@ -13,11 +15,12 @@
       <td><%= task.content %></td>
       <td><%= task.created_at %></td>
       <td><%= task.deadline %></td>
+      <td><%= task.status %></td>
       <td><%= link_to '詳細', task_path(task) %></td>
       <td><%= link_to '編集', edit_task_path(task) %></td>
       <td><%= link_to '削除', task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか?' } %></td>
     </tr>
   <% end %>
-</table>
+</table><br>
 
 <div><%= link_to 'タスク作成', new_task_path %></div>
