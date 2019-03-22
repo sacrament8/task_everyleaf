@@ -26,7 +26,7 @@
   - ID
   - user_id:bigint(FK)
   - deadline:date
-  - status:integer
+  - status:string
   - title:string
   - priority:integer
   - content:text  
