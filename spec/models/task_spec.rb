@@ -26,6 +26,11 @@ RSpec.describe Task, type: :model do
       expect(@task).not_to be_valid
     end
 
+    it "priorityが空ならバリデーションが通らない" do
+      @task.priority= ""
+      expect(@task).not_to be_valid
+    end
+
     it "titleとcontentとstatusとdeadlineが記載されていればバリデーションが通る" do
       expect(@task).to be_valid
     end
@@ -77,6 +82,10 @@ RSpec.describe Task, type: :model do
 
     it "created_at_descのテスト" do
       expect(Task.created_at_desc).to eq Task.all.order(created_at: "DESC")
+    end
+
+    it "priority_ascのテスト" do
+      expect(Task.priority_asc).to eq Task.all.order(priority: "ASC")
     end
 
   end

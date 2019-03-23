@@ -3,5 +3,6 @@
 <div>作業内容: <%= @task.content %></div>
 <div>終了期限: <%= @task.deadline %></div>
 <div>ステータス: <%= @task.status %>
+<div>優先順位: <%= @task.priority %></div>
 </div>
 <div><%= link_to '編集', edit_task_path(@task) %> | <%= link_to '戻る', tasks_path %></div>

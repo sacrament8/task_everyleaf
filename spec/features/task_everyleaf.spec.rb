@@ -38,7 +38,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
-    Task.create!(title: '最新のタイトル', content: '最新のコンテント', deadline: '2019-03-23')
+    Task.create!(title: '最新のタイトル', content: '最新のコンテント', deadline: '2019-03-23', priority: 0)
     visit tasks_path
     click_on '詳細', match: :first
     expect(page).to have_content '最新のタイトル'
@@ -57,6 +57,15 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル2'
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント2'
     expect(page).to have_content '2019-03-25'
+  end
+
+  scenario "優先順位で高い順にソートを押すと最後に登録した唯一の優先度高のタスク4が一番上にくる" do
+    visit tasks_path
+    click_on '優先順位で高い順にソート'
+    click_on '詳細', match: :first
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル4'
+    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント4'
+    expect(page).to have_content '高'
   end
   
 end

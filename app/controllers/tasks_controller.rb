@@ -15,8 +15,10 @@ class TasksController < ApplicationController
         @tasks = Task.created_at_desc
       end
     else     # 検索フォームから以外の処理
-      if params[:sort_flag]       #ソートリンク(終了期限でソート)からの処理
+      if params[:sort_flag] == "deadline"       #ソートリンク(終了期限でソート)からの処理
         @tasks = Task.deadline_asc
+      elsif params[:sort_flag] == "priority"
+        @tasks = Task.priority_asc
       else                        #ソートリンク(タスク追加が新しい順にソート)からの処理
         @tasks = Task.created_at_desc
       end
@@ -60,7 +62,7 @@ class TasksController < ApplicationController
 
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
   end
   
   def set_task
