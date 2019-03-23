@@ -17,10 +17,10 @@ class TasksController < ApplicationController
     else     # 検索フォームから以外の処理
       if params[:sort_flag] == "deadline"       #ソートリンク(終了期限でソート)からの処理
         @tasks = Task.deadline_asc
-      elsif params[:sort_flag] == "priority"
+      elsif params[:sort_flag] == "priority"    #ソートリンク(優先順位でソート)からの処理
         @tasks = Task.priority_asc
-      else                        #ソートリンク(タスク追加が新しい順にソート)からの処理
-        @tasks = Task.created_at_desc
+      else
+        @tasks = Task.created_at_desc           #ソートリンク(タスク追加が新しい順にソート)からの処理
       end
     end
   end
