@@ -9,7 +9,6 @@
   <tr>
   <th>タイトル</th>
   <th>内容</th>
-  <th>作成日時</th>
   <th>終了期限</th>
   <th>ステータス</th>
   <th>優先順位</th>
@@ -18,7 +17,6 @@
     <tr>
       <td><%= task.title %></td>
       <td><%= task.content %></td>
-      <td><%= task.created_at %></td>
       <td><%= task.deadline %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
@@ -28,5 +26,6 @@
     </tr>
   <% end %>
 </table><br>
+<%= paginate @tasks %><br>
 
 <div><%= link_to 'タスク作成', new_task_path %></div>
