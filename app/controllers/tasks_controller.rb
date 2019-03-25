@@ -6,21 +6,21 @@ class TasksController < ApplicationController
 
     if params[:search_flag] == "true"     # 検索フォームからの処理か分岐
       if params[:search_title].present? && params[:search_status].present?    # 入力欄どちらもあり
-        @tasks = Task.status_title_like_where(status, title)
+        @tasks = Task.page(params[:page]).status_title_like_where(status, title)
       elsif params[:search_title].empty? && params[:search_status].present?     # タイトルのみ空
-        @tasks = Task.status_like_where(status)
+        @tasks = Task.page(params[:page]).status_like_where(status)
       elsif params[:search_title].present? && params[:search_status].empty?      # ステータスのみ空
-        @tasks = Task.title_like_where(title)
+        @tasks = Task.page(params[:page]).title_like_where(title)
       elsif params[:search_title].empty? && params[:search_status].empty?  # ステータスもタイトルも空
-        @tasks = Task.created_at_desc
+        @tasks = Task.page(params[:page]).created_at_desc
       end
     else     # 検索フォームから以外の処理
       if params[:sort_flag] == "deadline"       #ソートリンク(終了期限でソート)からの処理
-        @tasks = Task.deadline_asc
+        @tasks = Task.page(params[:page]).deadline_asc
       elsif params[:sort_flag] == "priority"    #ソートリンク(優先順位でソート)からの処理
-        @tasks = Task.priority_asc
+        @tasks = Task.page(params[:page]).priority_asc
       else
-        @tasks = Task.created_at_desc           #ソートリンク(タスク追加が新しい順にソート)からの処理
+        @tasks = Task.page(params[:page]).created_at_desc           #ソートリンク(タスク追加が新しい順にソート)からの処理
       end
     end
   end
