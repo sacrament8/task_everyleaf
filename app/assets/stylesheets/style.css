@@ -1,0 +1,37 @@
+body {
+  font-size: 62.5%;
+  margin-bottom: 110px;
+}
+.btn {
+  font-size: 12px;
+}
+.priority {
+  padding: 7.5px 28px;
+  pointer-events: none;
+}
+.status {
+  display: block;
+  width: 75px;
+  pointer-events: none;
+}
+.task_search {
+  font-size: 62.5%;
+  margin-left: 10px;
+}
+.navbar {
+  background-color: #563d7c;
+}
+.footer {
+  background-color: #563d7c;
+}
+.footer_word {
+  padding-top: 30px;
+  vertical-align: middle;
+}
+.footer_wrapper {
+  height: 80px;
+  margin-top: 50px;
+}
+.form-control {
+  font-size: 13px;
+}

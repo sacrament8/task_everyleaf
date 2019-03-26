@@ -1,33 +1,42 @@
-<%= form_with model:@task, local: true do |f| %>
-  <% if @task.errors.any? %>
-    <h2><%= @task.errors.count %>件のエラーがあります</h2>
-    <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="row">
+  <div class="form-wrapper ml-3">
+  
+    <%= form_with model:@task, local: true do |f| %>
+      <% if @task.errors.any? %>
+        <h2><%= @task.errors.count %>件のエラーがあります</h2>
+        <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title, id: 'title' %>
+
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, id: 'title', class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_field :content, id: 'content', class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :deadline %>
+        <%= f.date_select :deadline, id: 'deadline', class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :status %>
+        <%= f.select :status, ["未着手", "着手中", "完了"], class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :priority %>
+        <%= f.select :priority, Task.priorities.keys, :selected=>Task.priorities[@task.priority], class: "form-control" %>
+      </div>
+      
+      <%= f.submit change_submit_name, class:"btn btn-primary" %>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_field :content, id: 'content' %>
-  </div>
-  <div>
-    <%= f.label :deadline %>
-    <%= f.date_select :deadline, id: 'deadline' %>
-  </div>
-  <div>
-    <%= f.label :status %>
-    <%= f.select :status, ["未着手", "着手中", "完了"]%>
-  </div>
-  <div>
-    <%= f.label :priority %>
-    <%= f.select :priority, Task.priorities.keys, :selected=>Task.priorities[@task.priority] %>
-  </div>
-  <div>
-    <%= f.submit '作成' %>
-  </div>
-<% end %>
+</div>
