@@ -10,10 +10,50 @@
   </head>
 
   <body>
-    <!--flashメッセージ表示部分-->
+<!--container-->
+    <div class="container-fluid">
+<!--header-->
+<div class="row">
+  <nav class="navbar navbar-expand-lg navbar-light col-12">
+    <%= link_to "E-Task!", tasks_path, class: "navbar-brand text-light" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'index', tasks_path, class: "nav-link text-light" %>
+          <li class="nav-item ">
+            <a class="nav-link text-light" href="#">後で追加</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link text-light" href="#">後で追加</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">後で追加</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+  <!--検索フォームパーシャル読み込み-->
+      <%= render 'search' %>
+      </form>
+    </div>
+  </nav>
+</div>
+<!--flash message-->
+  <div class="row">
     <% flash.each do |key, value| %>
       <%= content_tag :div, value, class: "#{key}" %>
     <% end %>
-    <%= yield %>
-  </body>
+  </div>
+  <%= yield %>
+<!--footer-->
+  <div class="row">
+    <footer class="footer col-12 footer_wrapper fixed-bottom">
+      <p class="text-light text-center footer_word">thanks for comfirmation!</p>
+    </footer>
+  </div>
+</div>
+
+</body>
 </html>

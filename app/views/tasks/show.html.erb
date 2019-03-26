@@ -1,8 +1,32 @@
-<h2><%= t('page.show') %></h2>
-<div>タスクタイトル: <%= @task.title %></div>
-<div>作業内容: <%= @task.content %></div>
-<div>終了期限: <%= @task.deadline %></div>
-<div>ステータス: <%= @task.status %>
-<div>優先順位: <%= @task.priority %></div>
+<div class="row">
+  <h1 class="mx-auto"><%= t('page.show') %></h1>
 </div>
-<div><%= link_to '編集', edit_task_path(@task) %> | <%= link_to '戻る', tasks_path %></div>
+<div class="row">
+  <div class="table-responsive">
+    <table class="table">
+      <tr class="row">
+        <th class="offset-1 col-1">タイトル</th>
+        <td class="col-9"><%= @task.title %></td>
+      </tr>
+        <tr class="row">
+        <th class="offset-1 col-1">作業内容</th>
+        <td class="col-9"><%= @task.content %></td>
+      </tr>
+      <tr class="row">
+        <th class="offset-1 col-1">終了期限</th>
+        <td class="col-9"><%= @task.deadline %></td>
+      </tr>
+      <tr class="row">
+        <th class="offset-1 col-1">ステータス</th>
+        <td class="col-9"><span class="status btn btn-primary"><%= @task.status %></span></td>
+      </tr>
+      <tr class="row">
+        <th class="offset-1 col-1">優先順位</th>
+        <td class="col-9"><span class="priority btn"><%= @task.priority %></span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="mx-auto mt-5"><%= link_to '編集', edit_task_path(@task), class:"btn btn-info" %> <%= link_to '戻る', tasks_path, class:"btn btn-info" %></div>
+</div>
