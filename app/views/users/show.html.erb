@@ -1,3 +1,21 @@
-<H2>user show</h2>
-<div>ようこそ、<%= @user.name %>さん</div>
-<div>あなたのアドレスは<%= @user.email %>です</div>
+<div class="row">
+  <h1 class="mx-auto">ようこそ<%= @user.name %>さん</h1>
+</div>
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr class="row">
+        <th class="offset-1 col-2">ユーザー名</th>
+        <td class="col-8"><%= @user.name %></td>
+      </tr>
+        <tr class="row">
+        <th class="offset-1 col-2">メールアドレス</th>
+        <td class="col-8"><%= @user.email %></td>
+      </tr>
+      <tr class="row">
+        <th class="offset-1 col-2">登録タスク数</th>
+        <td class="col-8"><%= @user.tasks.count %></td>
+      </tr>
+    </table>
+  </div>
+</div>
