@@ -15,19 +15,19 @@
 <!--フォーム本体-->
       <div class="form-group">
         <%= f.label :name %>
-        <%= f.text_field :name, id: "user_name", class: "form-control" %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :email %>
-        <%= f.email_field :email, id: "user_email", class: "form-control" %>
+        <%= f.email_field :email, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :password %>
-        <%= f.password_field :password, id: "user_pass", class: "form-control" %>
+        <%= f.password_field :password, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, id: "user_pass_confirm", class: "form-control" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
       <%= f.submit "ユーザー登録", class: "btn btn-primary"%>
     </div>
