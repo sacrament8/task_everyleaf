@@ -1,7 +1,6 @@
-<h2 class="text-center">ログインフォーム<h2>
 <div class="row">
     <%= form_with scope: :session, url: sessions_path, local:true do |f| %>
-    <div class="form-wrapper ml-3">
+    <div class="form-wrapper ml-3  mt-3">
       <div class="form-group">
         <%= f.label :メールアドレス %>
         <%= f.email_field :email, id: "sign_in_email", class: "form-control" %>

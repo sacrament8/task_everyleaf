@@ -1,7 +1,7 @@
 <div class="row">
   <%= form_with model: @user, local: true do |f| %>
 <!--エラー表示-->
-      <div class="form-wrapper ml-3">
+      <div class="form-wrapper ml-3  mt-3">
       <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>

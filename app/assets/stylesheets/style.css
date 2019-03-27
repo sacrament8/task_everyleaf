@@ -25,8 +25,9 @@ body {
   background-color: #563d7c;
 }
 .footer_word {
-  padding-top: 30px;
+  padding-top: 60px;
   vertical-align: middle;
+  font-size: 10px;
 }
 .footer_wrapper {
   height: 80px;
@@ -37,4 +38,11 @@ body {
 }
 .form-group {
   font-size: 13px;
+}
+.vani_fla {
+  opacity: 0.9;
+  position: absolute;
+}
+.show_word {
+  font-size: 20px;
 }

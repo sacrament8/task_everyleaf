@@ -1,8 +1,5 @@
 <div class="row">
-    <h2 class="mx-auto"><%= t("page.index") %></h2>
-</div>
-<div class="row">
-  <div class="col-12 mb-2">
+  <div class="col-12 mb-2 my-2">
     <div class="float-right">
     <%= link_to "終了期限でソートする", tasks_path(sort_flag: "deadline"), class:"btn btn-info" %>
     <%= link_to "タスク追加が新しい順にソート", tasks_path(sort_flag: ""), class:"btn btn-info" %>
