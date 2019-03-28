@@ -58,5 +58,31 @@ RSpec.feature "サインイン/サインアウト機能", type: :feature do
     expect(page).to have_content "自分以外のユーザーページはご覧いただけません"
   end
 
+  scenario "非ログイン時にタスク一覧に飛ぶとログイン画面に飛ばされログインしてくださいとflashが表示される" do
+    visit tasks_path
+    expect(page).to have_content "ログインしてください"
+    expect(page).to have_content "SignIn"
+  end
 
+  scenario "非ログイン時にタスク作成画面に飛ぶとログイン画面に飛ばされログインしてくださいとflashが表示される" do
+    visit new_task_path
+    expect(page).to have_content "ログインしてください"
+    expect(page).to have_content "SignIn"
+  end
+
+  scenario "非ログイン時にタスク詳細のURIを直接叩くとログイン画面に飛ばされログインしてくださいとflashが表示される" do
+    @user = create(:user)
+    @task = create(:task, user_id: @user.id)
+    visit task_path(@user.tasks.first.id)
+    expect(page).to have_content "ログインしてください"
+    expect(page).to have_content "SignIn"
+  end
+
+  scenario "非ログイン時にタスク編集のURIを直接叩くとログイン画面に飛ばされログインしてくださいとflashが表示される" do
+    @user = create(:user)
+    @task = create(:task, user_id: @user.id)
+    visit edit_task_path(@user.tasks.first.id)
+    expect(page).to have_content "ログインしてください"
+    expect(page).to have_content "SignIn"
+  end
 end

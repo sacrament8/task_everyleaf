@@ -1,10 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
+  before_action :not_enter_no_Sign_in_user, only: %i(index new show edit)
   def index
-    unless current_user
-      redirect_to new_session_path, notice: "ログインしてください" 
-      return
-    end
+    
     title = params[:search_title] if params[:search_title].present?
     status = params[:search_status] if params[:search_status].present?
 
@@ -64,6 +62,12 @@ class TasksController < ApplicationController
   
   private
 
+  def not_enter_no_Sign_in_user
+    unless current_user
+      redirect_to new_session_path, notice: "ログインしてください" 
+      return
+    end
+  end
 
   def task_params
     params.require(:task).permit(:title, :content, :deadline, :status, :priority)
