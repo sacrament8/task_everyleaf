@@ -1,9 +1,11 @@
+* {
+  font-size: 18px;
+}
 body {
-  font-size: 62.5%;
   margin-bottom: 110px;
 }
 .btn {
-  font-size: 12px;
+  font-size: 15px;
 }
 .priority {
   padding: 7.5px 28px;
@@ -15,7 +17,7 @@ body {
   pointer-events: none;
 }
 .task_search {
-  font-size: 62.5%;
+  font-size: 15px;
   margin-left: 10px;
 }
 .navbar {
@@ -25,7 +27,7 @@ body {
   background-color: #563d7c;
 }
 .footer_word {
-  padding-top: 40px;
+  padding-top: 30px;
   vertical-align: middle;
   font-size: 10px;
 }
@@ -34,10 +36,10 @@ body {
   margin-top: 50px;
 }
 .form-control {
-  font-size: 13px;
+  font-size: 18px;
 }
 .form-group {
-  font-size: 13px;
+  font-size: 18px;
 }
 .vani_fla {
   opacity: 0.9;
@@ -45,4 +47,13 @@ body {
 }
 .show_word {
   font-size: 20px;
+}
+.table {
+  font-size: 18px;
+}
+.logo {
+  font-size: 30px;
+}
+.apear {
+  z-index: 10;
 }

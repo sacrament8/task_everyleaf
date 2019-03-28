@@ -15,7 +15,7 @@
 <!--header-->
 <div class="row">
   <nav class="navbar navbar-expand-lg navbar-light col-12">
-    <span class="navbar-brand text-light">E-Task!</span>
+    <span class="navbar-brand text-light logo">E-Task!</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -52,7 +52,7 @@
 <!--flash message-->
   <div class="row">
     <% flash.each do |key, value| %>
-      <div class="alert col-6 offset-3 float my-1 text-center vani_fla <%= bootstrap_class_for(key) %>">
+      <div class="apear alert col-6 offset-3 float my-1 text-center vani_fla <%= bootstrap_class_for(key) %>">
         <%= value %>
       </div>
     <% end %>
