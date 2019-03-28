@@ -24,8 +24,8 @@
     <tbody>
       <% @tasks.each do |task| %>
         <tr>
-          <td><%= task.title %></td>
-          <td><%= task.content %></td>
+          <td><strong><%= task.title.truncate(18) %></strong></td>
+          <td><%= task.content.truncate(20) %></td>
           <td><%= task.deadline %></td>
           <td><%= task.user.name %></td>
           <td><span class="status btn btn-primary"><%= task.status %></span></td>
