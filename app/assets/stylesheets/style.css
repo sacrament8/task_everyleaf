@@ -25,12 +25,12 @@ body {
   background-color: #563d7c;
 }
 .footer_word {
-  padding-top: 60px;
+  padding-top: 40px;
   vertical-align: middle;
   font-size: 10px;
 }
 .footer_wrapper {
-  height: 80px;
+  height: 58px;
   margin-top: 50px;
 }
 .form-control {

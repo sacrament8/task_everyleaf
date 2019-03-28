@@ -1,7 +1,10 @@
 # READ ME  
 ## Ruby&Framework version  
 - ruby 2.6.1
-- "rails", "~> 5.2.2", ">= 5.2.2.1"  
+- "rails", "~> 5.2.2", ">= 5.2.2.1" 
+## Node Modules
+- bootstrap "^4.3.1"
+- jquery "^3.3.1" 
 ## デプロイの手順  
 - heroku login
 - すでにアプリをデプロイしているならheroku apps:destroy --app アプリ名で消す
