@@ -1,5 +1,5 @@
 User.create!(
-  email: ENV["SEED_EMAIL1"],
-  password: ENV["SEED_PASS1"],
-  name: "sacrament",
+  email: "test@test.com",
+  password: "111111",
+  name: "testuser",
 )
