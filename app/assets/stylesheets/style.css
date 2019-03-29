@@ -1,9 +1,11 @@
+* {
+  font-size: 18px;
+}
 body {
-  font-size: 62.5%;
   margin-bottom: 110px;
 }
 .btn {
-  font-size: 12px;
+  font-size: 15px;
 }
 .priority {
   padding: 7.5px 28px;
@@ -15,7 +17,7 @@ body {
   pointer-events: none;
 }
 .task_search {
-  font-size: 62.5%;
+  font-size: 15px;
   margin-left: 10px;
 }
 .navbar {
@@ -27,11 +29,31 @@ body {
 .footer_word {
   padding-top: 30px;
   vertical-align: middle;
+  font-size: 10px;
 }
 .footer_wrapper {
-  height: 80px;
+  height: 58px;
   margin-top: 50px;
 }
 .form-control {
-  font-size: 13px;
+  font-size: 18px;
+}
+.form-group {
+  font-size: 18px;
+}
+.vani_fla {
+  opacity: 0.9;
+  position: absolute;
+}
+.show_word {
+  font-size: 20px;
+}
+.table {
+  font-size: 18px;
+}
+.logo {
+  font-size: 30px;
+}
+.apear {
+  z-index: 10;
 }

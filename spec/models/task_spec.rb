@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Task, type: :model do
 
@@ -36,22 +36,22 @@ RSpec.describe Task, type: :model do
     end
 
     it "titleが81文字以上だとバリデーションが通らない" do
-      @task.title = 't'*81
+      @task.title = "t"*81
       expect(@task).not_to be_valid
     end
 
     it "titleが80以下だとバリデーションが通る" do
-      @task.title = 't'*80
+      @task.title = "t"*80
       expect(@task).to be_valid
     end
 
     it "contentが301文字以上だとバリデージョンが通らない" do
-      @task.content = 't'*301
+      @task.content = "t"*301
       expect(@task).not_to be_valid
     end
 
     it "contentが300文字以下だとバリデーションが通る" do
-      @task.content = 't'*300
+      @task.content = "t"*300
       expect(@task).to be_valid
     end
   end

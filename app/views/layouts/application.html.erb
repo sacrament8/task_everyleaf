@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
@@ -15,27 +15,36 @@
 <!--header-->
 <div class="row">
   <nav class="navbar navbar-expand-lg navbar-light col-12">
-    <%= link_to "E-Task!", tasks_path, class: "navbar-brand text-light" %>
+    <span class="navbar-brand text-light logo">E-Task!</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to 'index', tasks_path, class: "nav-link text-light" %>
-          <li class="nav-item ">
-            <a class="nav-link text-light" href="#">後で追加</a>
+        <% if logged_in? %>
+        <!--ログイン時表示-->
+          <li class="nav-item">
+            <%= link_to "index", tasks_path, class: "nav-link text-light" %>
           </li>
           <li class="nav-item">
-          <a class="nav-link text-light" href="#">後で追加</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#">後で追加</a>
-        </li>
+            <%= link_to "MyPage", user_path(current_user), class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "SignOut", session_path(current_user.id), method: :delete, class: "nav-link text-light" %>
+          </li>
+        <% else %>
+        <!--非ログイン時表示-->
+          <li class="nav-item">
+            <%= link_to "SignUp", new_user_path, class: "nav-link text-light"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "SignIn", new_session_path, class: "nav-link text-light" %>
+          </li>
+        <% end %>
       </ul>
       <form class="form-inline my-2 my-lg-0">
   <!--検索フォームパーシャル読み込み-->
-      <%= render 'search' %>
+      <%= render "search" %>
       </form>
     </div>
   </nav>
@@ -43,7 +52,9 @@
 <!--flash message-->
   <div class="row">
     <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "#{key}" %>
+      <div class="apear alert col-6 offset-3 float my-1 text-center vani_fla <%= bootstrap_class_for(key) %>">
+        <%= value %>
+      </div>
     <% end %>
   </div>
   <%= yield %>
@@ -54,6 +65,5 @@
     </footer>
   </div>
 </div>
-
 </body>
 </html>
