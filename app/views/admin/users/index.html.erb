@@ -25,6 +25,13 @@
     </table><br>
   </div>
 </div>
+<!--ページネーション-->
+<div class="row">
+  <div class="col-12 clearfix">
+    <div class="float-right mr-5"><%= paginate @users %></div>
+  </div>
+</div>
+<!--新規ユーザー作成ボタン-->
 <div class="row">
   <%= link_to '新規ユーザー作成', new_admin_user_path, class: 'btn btn-primary mx-auto'%>
 </div>
