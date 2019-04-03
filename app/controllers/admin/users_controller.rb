@@ -1,8 +1,8 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit update destroy)
+  before_action :set_user, only: %i(have_tasks edit update destroy)
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.order(created_at: 'DESC').page(params[:page])
   end
 
   def new
@@ -24,14 +24,14 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_user_path(@user), notice: "ユーザー「#{ @user.name }」の情報を更新しました"
+      redirect_to admin_users_path, notice: "ユーザー「#{ @user.name }」の情報を更新しました"
     else
       flash.now[:danger] = '入力に不備があります、入力欄を確認してください'
       render :edit
     end
   end
 
-  def show
+  def have_tasks
   end
 
   def destroy
