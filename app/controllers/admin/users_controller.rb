@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i(have_tasks edit update destroy)
 
   def index
-    @users = User.all.order(created_at: 'DESC').page(params[:page])
+    @users = User.includes(:tasks).order(created_at: 'DESC').page(params[:page])
   end
 
   def new
