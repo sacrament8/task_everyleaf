@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i(show)
+  
   def new
     if current_user
       flash[:danger] = "あなたは既に登録ユーザーです"
