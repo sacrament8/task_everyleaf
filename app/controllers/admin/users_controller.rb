@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def new
-    @user = Users.new
+    @user = User.new
   end
 
   def create
@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to adminm_user_path(@user), notice: "ユーザー「#{ @user.name }」の情報を更新しました"
+      redirect_to admin_user_path(@user), notice: "ユーザー「#{ @user.name }」の情報を更新しました"
     else
       flash.now[:danger] = '入力に不備があります、入力欄を確認してください'
       render :edit
