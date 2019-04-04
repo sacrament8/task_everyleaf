@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :not_enter_no_Sign_in_user, only: %i(index new show edit)
   
   def index
-    search_diverge
+    search_diverge  #タスク取得分岐用メソッド、詳細はprivateに
   end
 
   def new
@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   end
   
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 
   def search_diverge
