@@ -15,6 +15,7 @@ ja:
         priority: 優先順位
       user:
         name: 名前
+        admin: 管理者権限
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
