@@ -16,6 +16,10 @@
         <th class="offset-1 col-2">登録タスク数</th>
         <td class="col-8"><%= @user.tasks.count %></td>
       </tr>
+      <tr class= "row">
+        <th class="offset-1 col-2">管理者権限</th>
+        <td class="col-8"><%= @user.admin ? "権限あり" : "権限なし" %></td>
+      </tr>
     </table>
   </div>
 </div>

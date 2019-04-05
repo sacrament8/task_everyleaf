@@ -23,6 +23,10 @@
         <%= f.email_field :email, id: "user_email", class: "form-control" %>
       </div>
       <div class="form-group">
+        <%= f.label :admin%>
+        <%= f.check_box :admin, id: "user_admin", class: "form-cehck-input ml-1"%>
+      </div>
+      <div class="form-group">
         <%= f.label :password %>
         <%= f.password_field :password, id: "user_pass", class: "form-control" %>
       </div>

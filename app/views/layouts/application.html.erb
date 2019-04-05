@@ -32,10 +32,11 @@
           <li class="nav-item">
             <%= link_to "SignOut", session_path(current_user.id), method: :delete, class: "nav-link text-light" %>
           </li>
-        <!--後からアドミンユーザーのみに制限-->
-          <li class="nav-item">
-            <%= link_to "UsersIndex", admin_users_path, class: "nav-link text-light" %>
-          </li>
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to "UsersIndex", admin_users_path, class: "nav-link text-light" %>
+            </li>
+          <% end %>
         <% else %>
         <!--非ログイン時表示-->
           <li class="nav-item">
