@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i(have_tasks edit update destroy)
+  before_action :not_enter_no_Sign_in_user
+  before_action :not_enter_no_admin_user
 
   def index
     @users = User.includes(:tasks).order(created_at: 'DESC').page(params[:page])
@@ -47,5 +49,19 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+  # ログインユーザーでなければログイン画面に飛ばしてフラッシュを表示
+  def not_enter_no_Sign_in_user
+    unless current_user
+      redirect_to new_session_path, notice: "ログインしてください" 
+      return
+    end
+  end
+  # カレントユーザーが管理者じゃなければ個人ページに転送してフラッシュを表示
+  def not_enter_no_admin_user
+    unless current_user.admin?
+      flash[:danger] = "管理者ユーザーのみが利用可能な機能です"
+      redirect_to user_path(current_user)
+    end
   end
 end
