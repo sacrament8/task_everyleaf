@@ -17,8 +17,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
   scenario "タスク一覧のテスト" do
     visit tasks_path
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル1"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル2"
+    expect(page).to have_content "Factoryタイトル1"
+    expect(page).to have_content "Factoryタイトル2"
   end
 
   scenario "タスク作成のテスト" do
@@ -38,8 +38,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "タスク詳細のテスト" do
     visit tasks_path
     click_on "詳細", match: :first
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル4"
-    expect(page).to have_content "Factoryで作ったデフォルトのコンテント4"
+    expect(page).to have_content "Factoryタイトル4"
+    expect(page).to have_content "Factoryコンテント4"
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
@@ -58,8 +58,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     click_on "終了期限でソート"
     click_on "詳細", match: :first
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル2"
-    expect(page).to have_content "Factoryで作ったデフォルトのコンテント2"
+    expect(page).to have_content "Factoryタイトル2"
+    expect(page).to have_content "Factoryコンテント2"
     expect(page).to have_content "2019-03-25"
   end
 
@@ -67,8 +67,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     click_on "優先順位で高い順にソート"
     click_on "詳細", match: :first
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル4"
-    expect(page).to have_content "Factoryで作ったデフォルトのコンテント4"
+    expect(page).to have_content "Factoryタイトル4"
+    expect(page).to have_content "Factoryコンテント4"
     expect(page).to have_content "高"
   end
   
@@ -92,13 +92,13 @@ RSpec.feature "タスク検索機能", type: :feature do
     visit tasks_path
     fill_in "task_title", with: "タイトル3"
     click_on "検索"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル3"
-    expect(page).to have_content "Factoryで作ったデフォルトのコンテント3"
+    expect(page).to have_content "Factoryタイトル3"
+    expect(page).to have_content "Factoryコンテント3"
     expect(page).to have_content "2019-03-26"
     expect(page).to have_content "完了"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル1"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル2"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル4"
+    expect(page).not_to have_content "Factoryタイトル1"
+    expect(page).not_to have_content "Factoryタイトル2"
+    expect(page).not_to have_content "Factoryタイトル4"
   end
 
   scenario "ステータスのみでの絞り込み検索テスト" do
@@ -106,10 +106,10 @@ RSpec.feature "タスク検索機能", type: :feature do
     visit tasks_path
     select "未着手", from: "search_status"
     click_on "検索"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル1"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル2"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル3"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル4"
+    expect(page).to have_content "Factoryタイトル1"
+    expect(page).not_to have_content "Factoryタイトル2"
+    expect(page).not_to have_content "Factoryタイトル3"
+    expect(page).not_to have_content "Factoryタイトル4"
   end
 
   scenario "ステータス、フォームでのアンド検索テスト" do
@@ -118,24 +118,24 @@ RSpec.feature "タスク検索機能", type: :feature do
     select "着手中", from: "search_status"
     fill_in "task_title", with: "タイトル2"
     click_on "検索"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル2"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル1"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル3"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル4"
+    expect(page).to have_content "Factoryタイトル2"
+    expect(page).not_to have_content "Factoryタイトル1"
+    expect(page).not_to have_content "Factoryタイトル3"
+    expect(page).not_to have_content "Factoryタイトル4"
   end
 
   scenario "条件なしで検索すると作成日descで全件表示されるテスト" do
     #ステータスフォーム空欄、タイトルフォーム空欄で絞り込むと全件表示され、一番上にレコード4がくる
     visit tasks_path
     click_on "検索"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル1"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル2"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル3"
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル4"
+    expect(page).to have_content "Factoryタイトル1"
+    expect(page).to have_content "Factoryタイトル2"
+    expect(page).to have_content "Factoryタイトル3"
+    expect(page).to have_content "Factoryタイトル4"
     click_on "詳細", match: :first
-    expect(page).to have_content "Factoryで作ったデフォルトのタイトル4"
+    expect(page).to have_content "Factoryタイトル4"
     expect(page).to have_content "着手中"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのコンテント3"
+    expect(page).not_to have_content "Factoryコンテント3"
   end
 
   scenario "存在しないタイトルのみで検索すると何も表示されないテスト" do
@@ -143,10 +143,10 @@ RSpec.feature "タスク検索機能", type: :feature do
     visit tasks_path
     fill_in "task_title", with: "タイトル5"
     click_on "検索"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル1"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル2"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル3"
-    expect(page).not_to have_content "Factoryで作ったデフォルトのタイトル4"
+    expect(page).not_to have_content "Factoryタイトル1"
+    expect(page).not_to have_content "Factoryタイトル2"
+    expect(page).not_to have_content "Factoryタイトル3"
+    expect(page).not_to have_content "Factoryタイトル4"
   end
 
 end
