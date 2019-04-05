@@ -50,6 +50,7 @@ class Admin::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+  
   # ログインユーザーでなければログイン画面に飛ばしてフラッシュを表示
   def not_enter_no_Sign_in_user
     unless current_user
@@ -57,11 +58,17 @@ class Admin::UsersController < ApplicationController
       return
     end
   end
+
   # カレントユーザーが管理者じゃなければ個人ページに転送してフラッシュを表示
   def not_enter_no_admin_user
     unless current_user.admin?
-      flash[:danger] = "管理者ユーザーのみが利用可能な機能です"
-      redirect_to user_path(current_user)
+      trigger_not_admin_user_error
     end
   end
+
+  # 自作例外NotAdminUserをトリガする
+  def trigger_not_admin_user_error
+    raise NotAdminUser
+  end
+
 end

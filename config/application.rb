@@ -17,5 +17,6 @@ module TaskEveryleaf
         request_specs: false
       g.fixture_replacement :factory_, dir: "spec/factories"
     end
+    config.autoload_paths += Dir["#{config.root}/lib/errors/"]
   end
 end
