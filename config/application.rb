@@ -17,6 +17,5 @@ module TaskEveryleaf
         request_specs: false
       g.fixture_replacement :factory_, dir: "spec/factories"
     end
-    config.paths.add "#{Rails.root}/lib/errors", eager_load: true
   end
 end

@@ -1,3 +1,2 @@
 class NotAdminUser < StandardError
-  
 end
