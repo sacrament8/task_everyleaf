@@ -1,0 +1,3 @@
+class NotLastAdminDestroy < StandardError
+
+end

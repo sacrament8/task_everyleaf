@@ -6,6 +6,7 @@
         <tr>
         <th scope="col">ユーザー名</th>
         <th scope="col">所持タスク数</th>
+        <th scope="col">管理者権限</th>
         <th></th>
         </tr>
       </thead>
@@ -14,6 +15,7 @@
           <tr>
             <td><strong><%= user.name %></strong></td>
             <td><%= user.tasks.size %></td>
+            <td><%= user.admin ? "あり" : "なし" %></td>
             <td>
               <%= link_to "所持タスク一覧", have_tasks_admin_user_path(user), class:"btn btn-info index_btn" %>
               <%= link_to "更新", edit_admin_user_path(user), class:"btn btn-info index_btn" %>
