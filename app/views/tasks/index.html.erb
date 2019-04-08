@@ -2,10 +2,10 @@
   <div class="col-12 mb-2 my-2">
     <div class="float-left">
       <%= form_with local: true, url: tasks_path, method: "get" do |f| %>
-        <%= f.label :search_label, "ラベル検索", class:"text-light mr-1 text-dark" %>
+        <%= f.label :search_label, "ラベル名", class:"text-light mr-1 text-dark" %>
         <%= f.select :search_label, Label.all.map { |l| l.name }, id: "label_name" %>
         <%= f.hidden_field :label_search_flag, value: "true" %>
-        <%= f.submit "検索",class: "btn btn-outline-dark text-dark my-2 my-sm-0 ml-2" %>
+        <%= f.submit "ラベルで検索",class: "btn btn-outline-dark text-dark my-2 my-sm-0 ml-2" %>
       <% end %>
     </div>
     <div class="float-right">

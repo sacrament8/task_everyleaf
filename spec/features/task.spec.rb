@@ -14,6 +14,88 @@ RSpec.feature "タスク管理機能", type: :feature do
     create(:third_task, user_id: @user.id)
     create(:fourth_task, user_id: @user.id)
   end
+  context "ラベル関連" do
+    background do
+      Label.create(name: "ラベル1")
+      Label.create(name: "ラベル2")
+      Label.create(name: "ラベル3")
+      Label.create(name: "ラベル4")
+      Label.create(name: "ラベル5")
+      
+    end
+    scenario "ラベル4でラベル検索すると一覧にラベル検索テスト4だけ表示される" do
+      visit new_task_path
+      fill_in "title", with: "ラベル検索テスト1"
+      fill_in "content", with: "ラベル1"
+      select "2019", from: "task_deadline_1i"
+      select "3", from: "task_deadline_2i"
+      select "27", from: "task_deadline_3i"
+      check "task_label_ids_1"
+
+      click_on "作成"
+
+      visit new_task_path
+      fill_in "title", with: "ラベル検索テスト2"
+      fill_in "content", with: "ラベル2"
+      select "2019", from: "task_deadline_1i"
+      select "3", from: "task_deadline_2i"
+      select "27", from: "task_deadline_3i"
+      check "task_label_ids_2"
+      click_on "作成"
+
+      visit new_task_path
+      fill_in "title", with: "ラベル検索テスト3"
+      fill_in "content", with: "ラベル3"
+      select "2019", from: "task_deadline_1i"
+      select "3", from: "task_deadline_2i"
+      select "27", from: "task_deadline_3i"
+      check "task_label_ids_3"
+      click_on "作成"
+
+      visit new_task_path
+      fill_in "title", with: "ラベル検索テスト4"
+      fill_in "content", with: "ラベル4"
+      select "2019", from: "task_deadline_1i"
+      select "3", from: "task_deadline_2i"
+      select "27", from: "task_deadline_3i"
+      check "task_label_ids_4"
+      click_on "作成"
+
+      visit new_task_path
+      fill_in "title", with: "ラベル検索テスト5"
+      fill_in "content", with: "ラベル5"
+      select "2019", from: "task_deadline_1i"
+      select "3", from: "task_deadline_2i"
+      select "27", from: "task_deadline_3i"
+      check "task_label_ids_5"
+      click_on "作成"
+      visit tasks_path
+      select "ラベル4", from: "search_label"
+      click_on "ラベルで検索"
+      expect(page).not_to have_content "ラベル検索テスト1"
+      expect(page).not_to have_content "ラベル検索テスト2"
+      expect(page).not_to have_content "ラベル検索テスト3"
+      expect(page).to have_content "ラベル検索テスト4"
+      expect(page).not_to have_content "ラベル検索テスト5"
+    end
+    scenario "ラベル2とラベル4だけ選択してタスクを作成して詳細をみると、選んだラベルのみが表示されている" do
+      visit new_task_path
+      fill_in "title", with: "ラベル表示テスト"
+      fill_in "content", with: "ラベル2と4を選択"
+      select "2019", from: "task_deadline_1i"
+      select "3", from: "task_deadline_2i"
+      select "27", from: "task_deadline_3i"
+      check "task_label_ids_7"
+      check "task_label_ids_9"
+      click_on "作成"
+      click_on "詳細", match: :first
+      expect(page).not_to have_content "ラベル1"
+      expect(page).to have_content "ラベル2"
+      expect(page).not_to have_content "ラベル3"
+      expect(page).to have_content "ラベル4"
+      expect(page).not_to have_content "ラベル5"      
+    end
+  end
   # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
   scenario "タスク一覧のテスト" do
     visit tasks_path
