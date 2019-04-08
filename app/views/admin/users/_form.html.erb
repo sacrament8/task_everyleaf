@@ -35,6 +35,11 @@
         <%= f.label :priority %>
         <%= f.select :priority, Task.priorities.keys, :selected=>Task.priorities[@task.priority], class: "form-control" %>
       </div>
+      <% @paste.categories.each do |l| %>
+        <%= l.label :l %>
+        <%= l.check_box :l %>
+      <% end %>
+      <div>あいうえお</div>
       
       <%= f.submit change_submit_name, class:"btn btn-primary" %>
     <% end %>

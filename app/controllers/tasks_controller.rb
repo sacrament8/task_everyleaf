@@ -12,7 +12,12 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
+    ids = params[:task][:label_ids] if params[:task][:label_ids].present?
     if @task.save
+      if ids.present?
+        paste = @task.pastes.build(task_id: @task.user_id, label_id: ids)
+        paste.save
+      end
       redirect_to tasks_path, notice: "タスクの作成に成功しました"
     else
       render :new
@@ -49,7 +54,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, label_ids: [])
   end
   
   def set_task

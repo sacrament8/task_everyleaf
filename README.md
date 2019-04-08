@@ -36,9 +36,9 @@
 
 - labels table
   - ID
-  - category:integer  
+  - category:integer
 
 - pastes table
   - ID
   - task_id:bigint(FK)
-  - label_id:bigint(FK)  
+  - label_id:bigint(FK)

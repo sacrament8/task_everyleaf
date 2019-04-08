@@ -24,6 +24,10 @@
         <th class="offset-1 col-1">優先順位</th>
         <td class="col-9"><span class="priority btn"><%= @task.priority %></span></td>
       </tr>
+      <tr class="row">
+        <th class="offset-1 col-1">ラベル</th>
+        <td class="col-9"><span class="priority btn"><%= @task.labels.map { |i| "#{ i.name } " }.join %></span></td>
+      </tr>
     </table>
   </div>
 </div>
