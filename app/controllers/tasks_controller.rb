@@ -60,6 +60,12 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find_by(id: params[:id])
   end
+  def label_search
+      label_name = params[:search_label]
+      label_id = Label.find_by(name: label_name).id
+      task_ids = Paste.where(label_id: label_id).pluck(:task_id)
+      @tasks = current_user.tasks.where(id: task_ids.to_a).page(params[:page]).created_at_desc
+  end
 
   def search_diverge
     title = params[:search_title] if params[:search_title].present?
@@ -75,6 +81,8 @@ class TasksController < ApplicationController
       elsif params[:search_title].empty? && params[:search_status].empty?  # ステータスもタイトルも空
         @tasks = current_user.tasks.page(params[:page]).created_at_desc
       end
+    elsif params[:label_search_flag] == "true" && params[:search_label].present?
+      label_search
     else     # 検索フォームから以外の処理
       if params[:sort_flag] == "deadline"       #ソートリンク(終了期限でソート)からの処理
         @tasks = current_user.tasks.page(params[:page]).deadline_asc
