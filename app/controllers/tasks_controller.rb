@@ -12,7 +12,12 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
+    ids = params[:task][:label_ids] if params[:task][:label_ids].present?
     if @task.save
+      if ids.present?
+        paste = @task.pastes.build(task_id: @task.user_id, label_id: ids)
+        paste.save
+      end
       redirect_to tasks_path, notice: "タスクの作成に成功しました"
     else
       render :new
@@ -49,11 +54,17 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, label_ids: [])
   end
   
   def set_task
     @task = Task.find_by(id: params[:id])
+  end
+  def label_search
+      label_name = params[:search_label]
+      label_id = Label.find_by(name: label_name).id
+      task_ids = Paste.where(label_id: label_id).pluck(:task_id)
+      @tasks = current_user.tasks.where(id: task_ids.to_a).page(params[:page]).created_at_desc
   end
 
   def search_diverge
@@ -70,6 +81,8 @@ class TasksController < ApplicationController
       elsif params[:search_title].empty? && params[:search_status].empty?  # ステータスもタイトルも空
         @tasks = current_user.tasks.page(params[:page]).created_at_desc
       end
+    elsif params[:label_search_flag] == "true" && params[:search_label].present?
+      label_search
     else     # 検索フォームから以外の処理
       if params[:sort_flag] == "deadline"       #ソートリンク(終了期限でソート)からの処理
         @tasks = current_user.tasks.page(params[:page]).deadline_asc

@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :pastes, dependent: :destroy
+  has_many :labels, through: :pastes
   validates :title, presence: true, length: { maximum: 80 }
   validates :content, presence: true, length: { maximum: 300 }
   validates :deadline, presence: true

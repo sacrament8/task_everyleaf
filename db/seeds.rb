@@ -4,3 +4,5 @@ User.create!(
   name: "testuser",
   admin: true,
 )
+
+5.times { |count| Label.create!(name: "ラベル#{count + 1}") }
