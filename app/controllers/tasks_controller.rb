@@ -24,6 +24,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def expired
+    @expired_tasks = current_user.expired
+    @one_day_left_tasks = current_user.one_day_left
+  end
+
   def show
   end
 
