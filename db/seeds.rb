@@ -37,4 +37,3 @@ Paste.create(
   task_id: (1..10),
   label_id: rand(5)
 )
-end

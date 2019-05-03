@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   # ステータスが完了でない期限切れタスクを全取得
   def expired
-    tasks.where("deadline <= ?", Date.today).where.not(status: '完了')
+    tasks.where("deadline < ?", Date.today).where.not(status: '完了')
   end
   # ステータスが完了でないあと1日で期限がくる(過ぎてはいない)タスクを全取得
   def one_day_left
