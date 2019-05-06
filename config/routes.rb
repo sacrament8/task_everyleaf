@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "tasks#index"
-  resources :tasks
+  resources :tasks do
+    get 'expired', on: :collection
+  end
   namespace :admin do
     resources :users do
       get :have_tasks, on: :member
